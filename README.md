@@ -1,30 +1,18 @@
-# vue_myshop
+# 登录模块验证
+  1.创建登录功能分支。
+  2.登录表单结构样式制作。
+  3.用户名和密码与后端服务器的表单验证，默认用户名：admin，密码：123456
+  4.完成登录模块功能，并和主分支合并。
 
-> A Vue.js project
+# 首页制作
+  1.通过Element ui组件创建头部、、侧边栏和主体内容。
+  2.对左侧内容进行JS交互。
+  3.创建路由组件并导航至相关路由。
+  4.需要授权的 API ，必须在请求头中使`Authorization` 字段提供 `token` 令牌，创建axios请求拦截器。
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 用户管理 > 用户列表
+  1.通过Element ui组件创建用户列表内容
+  2.向后端发起请求获取数据。
+  3.设置搜索内容框JS交互。
+  4.发起请求添加用户功能完善。
+  5.对用户列表的组件拆分，进行后面的复用组件功能。
