@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// 引入vue树形插件
+import TreeTable from 'vue-table-with-tree-grid'
+Vue.component('tree-table',TreeTable)
+
 // 引入全局样式表
 import './assets/css/global.css'
 // 引入element插件

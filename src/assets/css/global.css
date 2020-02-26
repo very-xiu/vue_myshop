@@ -46,3 +46,7 @@ body,
 .el-form-item.is-success .el-input__validateIcon {
     color: #67C23A
 }
+
+div .el-scrollbar__wrap {
+    height: 300px !important
+}

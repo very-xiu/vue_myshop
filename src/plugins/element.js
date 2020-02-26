@@ -1,6 +1,6 @@
 import Vue from 'vue'
 // 按需导入Element组件
-import { Button,Form, FormItem,Input,Message,Container,Header,Aside,Main,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Card, Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Option,Select } from 'element-ui';
+import { Button,Form, FormItem,Input,Message,Container,Header,Aside,Main,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Card, Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Option,Select,Cascader,Alert } from 'element-ui';
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
@@ -27,6 +27,8 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Option)
 Vue.use(Select)
+Vue.use(Cascader)
+Vue.use(Alert)
 
 // Message需要全局挂载
 Vue.prototype.$message = Message
