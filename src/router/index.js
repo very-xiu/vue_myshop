@@ -10,7 +10,7 @@ import Reports from '@/components/Reports/Reports'
 import Params from '@/components/Params/Params'
 import Orders from '@/components/Orders/Orders'
 import Goods from '@/components/Goods/Goods'
-import CateGories from '@/components/Orders/Orders'
+import CateGories from '@/components/CateGories/CateGories'
 
 Vue.use(Router)
 
