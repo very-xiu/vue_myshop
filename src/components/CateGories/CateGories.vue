@@ -220,7 +220,7 @@ export default {
       this.queryInfo.pagenum = newPage;
       this.getCateList();
     },
-    // 点击按钮展示添加分类
+    // 点击按钮添加分类
     showAddCateDialog() {
       this.getParentCateList();
       this.addDialogVisible = true;

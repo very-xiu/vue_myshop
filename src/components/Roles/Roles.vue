@@ -344,6 +344,7 @@ export default {
         return this.$message.error("删除权限失败");
       }
       this.$message.success("删除权限成功");
+      // console.log(result.data)
       // 重新赋值不刷新页面删除权限的方法
       role.children = result.data;
     },
