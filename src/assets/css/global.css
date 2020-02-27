@@ -47,6 +47,6 @@ body,
     color: #67C23A
 }
 
-div .el-scrollbar__wrap {
+div .el-cascader-panel .el-scrollbar__wrap {
     height: 300px !important
 }

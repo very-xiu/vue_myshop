@@ -10,6 +10,7 @@ import Reports from '@/components/Reports/Reports'
 import Params from '@/components/Params/Params'
 import Orders from '@/components/Orders/Orders'
 import Goods from '@/components/Goods/Goods'
+import Add from '@/components/Goods/Add'
 import CateGories from '@/components/CateGories/CateGories'
 
 Vue.use(Router)
@@ -29,17 +30,18 @@ const router = new Router({
             path: '/home',
             name: 'Home',
             component: Home,
-            redirect:'/welcome',
-            children:[
-              {path:'/welcome',component:Welcome},
-              {path:'/users',component:Users},
-              {path:'/roles',component:Roles},
-              {path:'/rights',component:Rights},
-              {path:'/reports',component:Reports},
-              {path:'/params',component:Params},
-              {path:'/orders',component:Orders},
-              {path:'/goods',component:Goods},
-              {path:'/cateGories',component:CateGories},
+            redirect: '/welcome',
+            children: [
+                { path: '/welcome', component: Welcome },
+                { path: '/users', component: Users },
+                { path: '/roles', component: Roles },
+                { path: '/rights', component: Rights },
+                { path: '/reports', component: Reports },
+                { path: '/params', component: Params },
+                { path: '/orders', component: Orders },
+                { path: '/goods', component: Goods },
+                { path: '/goods/add', component: Add },
+                { path: '/cateGories', component: CateGories },
             ]
         }
     ]
@@ -52,12 +54,12 @@ router.beforeEach((to, from, next) => {
     // next 是一个函数，表示放行
     // next()放行    next('/login')强制跳转
 
-    if(to.path === '/login') return next();
+    if (to.path === '/login') return next();
     //从sessionStorage中获取到保存的token值
     const tokenStr = window.sessionStorage.getItem('token');
     // 如果tokenStr是空的
-    if(!tokenStr)  return next('/login');
-    
+    if (!tokenStr) return next('/login');
+
     next();
 })
 
