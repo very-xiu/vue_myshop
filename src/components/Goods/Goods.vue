@@ -65,6 +65,7 @@
       </el-table>
       <!-- 分页指示器 -->
       <el-pagination
+      background
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="queryInfo.pagenum"
@@ -76,29 +77,32 @@
     </el-card>
 
     <!-- 修改商品的对话框 -->
-    <!-- <el-dialog title="编辑商品" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed">
+    <el-dialog title="编辑商品" :visible.sync="editDialogVisible" width="50%" @close="editDialogClosed">
       <el-form
         :model="editForm"
         :rules="editFormRules"
         ref="editFormRef"
-        label-width="70px"
+        label-width="80px"
         status-icon
       >
-        <el-form-item label="商品名">
-          <el-input v-model="editForm.username" disabled></el-input>
+        <el-form-item label="商品名称" prop="goods_name">
+          <el-input v-model="editForm.goods_name"></el-input>
         </el-form-item>
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="editForm.email"></el-input>
+        <el-form-item label="商品价格" prop="goods_price">
+          <el-input v-model="editForm.goods_price" type="number"></el-input>
         </el-form-item>
-        <el-form-item label="手机" prop="mobile">
-          <el-input v-model="editForm.mobile"></el-input>
+        <el-form-item label="商品重量" prop="goods_weight">
+          <el-input v-model="editForm.goods_weight" type="number"></el-input>
+        </el-form-item>
+        <el-form-item label="商品数量" prop="goods_number">
+          <el-input v-model="editForm.goods_number" type="number"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editUserInfo">确 定</el-button>
+        <el-button type="primary" @click="editGoods">确 定</el-button>
       </span>
-    </el-dialog> -->
+    </el-dialog>
 
   </div>
 </template>
@@ -120,7 +124,33 @@ export default {
       // 添加商品对话框的显示和隐藏
       addDialogVisible:false,
       // 添加商品的表单数据
-      addGoodForm:{}
+      addGoodForm:{},
+      // 编辑商品对话框展示和隐藏
+      editDialogVisible:false,
+      // 编辑商品校验规则对象
+      editFormRules:{
+        goods_name:[
+          {required:true,message:'请输入商品名称',trigger:'blur'}
+        ],
+        goods_price:[
+          {required:true,message:'请输入商品价格',trigger:'blur'},
+
+        ],
+        goods_number:[
+          {required:true,message:'请输入商品数量',trigger:'blur'}
+        ],
+        goods_weight:[
+          {required:true,message:'请输入商品重量',trigger:'blur'}
+        ]
+      },
+      // 编辑商品表单对象
+      editForm:{
+        goods_id:'',
+        goods_name:'',
+        goods_price:'',
+        goods_number:'',
+        goods_weight:'',
+      }
     };
   },
   methods:{
@@ -173,13 +203,44 @@ export default {
       this.$message.success("删除商品成功");
       this.getGoodsList();
     },
+    // 监听关闭编辑商品事件重置表单
+    editDialogClosed(){
+      this.$refs.editFormRef.resetFields();
+    },
     // 展示编辑商品的对话框
     async showEditDialog(id) {
-      
+      const { data: result } = await this.$http.get(`goods/${id}`);
+      if (result.meta.status !== 200) {
+        return this.$message.error("查询商品信息失败！");
+      }
+      this.editForm = result.data;
+      this.editDialogVisible=true;
     },
     // 添加商品按钮
     addGood(){
       this.$router.push('/goods/add')
+    },
+    // 点击确定按钮提交修改数据
+    editGoods(){
+      // 对整个表单进行校验的方法
+      this.$refs.editFormRef.validate(async valid => {
+        if (!valid) return;
+         
+          // 发起修改商品信息的请求
+          const { data: result } = await this.$http.put(
+            `goods/${this.editForm.goods_id}`,this.editForm
+          );
+          if (result.meta.status !== 200) {
+            return this.$message.error("更新商品信息失败");
+          }
+          // 添加隐藏修改商品对话框功能
+          this.editDialogVisible = false;
+          // 重新获取商品列表数据
+          this.getGoodsList();
+          // this.getParentCateList();
+          this.$message.success("更新商品信息成功");
+        
+      });
     }
   },
   created(){

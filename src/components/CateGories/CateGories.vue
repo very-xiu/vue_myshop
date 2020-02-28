@@ -44,7 +44,12 @@
             size="mini"
             @click="showCateEditDialog(scope.row.cat_id)"
           >编辑</el-button>
-          <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeCateById(scope.row.cat_id)">删除</el-button>
+          <el-button
+            type="danger"
+            icon="el-icon-delete"
+            size="mini"
+            @click="removeCateById(scope.row.cat_id)"
+          >删除</el-button>
         </template>
       </tree-table>
 
@@ -115,7 +120,7 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editCateInfo">确 定</el-button>
+        <el-button type="primary" @click="editCateInfo(scope)">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -294,7 +299,6 @@ export default {
     },
     // 修改商品信息并提交
     editCateInfo() {
-      // console.log(cate)
       // 对整个表单进行校验的方法
       this.$refs.editCateFormRef.validate(async valid => {
         if (!valid) return;
@@ -320,9 +324,8 @@ export default {
           // 添加隐藏修改商品对话框功能
           this.editDialogVisible = false;
           // 重新获取商品列表数据
-          console.log(result.data);
-          console.log(this.catelist);
-          // this.catelist = result.data;
+          this.getCateList();
+          // this.getParentCateList();
           this.$message.success("更新商品信息成功");
         }
       });
