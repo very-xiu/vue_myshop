@@ -1,3 +1,9 @@
+# 缩略图
+![images](https://github.com/very-xiu/vue_myshop/blob/master/static/imaages/vue_login+user.gif?raw=true)
+![images](https://github.com/very-xiu/vue_myshop/blob/master/static/imaages/vue_right+roles.gif?raw=true)
+![images](https://github.com/very-xiu/vue_myshop/blob/master/static/imaages/vue_goods+params+categories.gif?raw=true)
+![images](https://github.com/very-xiu/vue_myshop/blob/master/static/imaages/vue_orders+reports.gif?raw=true)
+
 # 电商后台管理系统
   使用Vue框架，Element ui组件，axios发送请求制作的后台管理系统。
 
