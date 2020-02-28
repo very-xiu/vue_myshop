@@ -203,6 +203,11 @@ export default {
       this.progressInfo = result.data;
       this.progressVisible = true;
       // console.log(this.progressInfo);
+    },
+    // enter键搜索筛选内容
+    enterSearch(){
+      this.queryInfo.pagenum=1;
+      this.getOrdersList();
     }
   }
 };
